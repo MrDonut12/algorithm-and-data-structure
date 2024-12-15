@@ -1,0 +1,11 @@
+.caihinh {
+  background-image: url("DD.png");
+  background-size: 1000 px;
+  background-clip: padding-box;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  width: 100vw;
+  height: 100px;
+  padding: 50px;
+}

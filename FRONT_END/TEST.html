@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        .container {
+            width: 200px;
+            height: 100px;
+            border: 2px solid black;
+
+        }
+
+        .text {
+            color: red;
+        }
+
+        .container+.text {
+            background-color: yellow;
+        }
+    </style>
+    <div class="container">
+        <span class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae animi voluptate quidem ipsa!
+            Provident omnis perferendis laboriosam dolores laborum in! Voluptatibus neque quaerat earum nam quae aliquid
+            quos fugit eligendi.</span>
+    </div>
+</body>
+
+</html>
