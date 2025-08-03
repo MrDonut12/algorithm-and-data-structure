@@ -13,7 +13,7 @@ ll result;
 int main() {
 	ios_base:: sync_with_stdio(false);
 	cin.tie(0);
-	cin >> n >> s;
+	cin >> n >> s; 
 	for (int i = 1; i <= n; ++i) cin >> a[i];
 	ll currs = 0;
 	for (int i = 1, j = 1; i <= n; ++i) {
@@ -21,6 +21,7 @@ int main() {
 		while (currs >= s) {
 			currs -= a[j++];
 			result += (n - i + 1);
+			
 		}
 	}
 	
