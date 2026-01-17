@@ -8,7 +8,7 @@ using namespace std;
 #define se second
 #define pb push_back
 #define forto(i, a, b) for (int i = a; i <= b; i++)
-#define rep(i, n) for (int i = 1; i <= n; i++)
+#define rep(i, n) for (int i = 0; i < n; i++)
 #define fordto(i, a, b) for (int i = a; i >= b; i--)
 #define fastIO ios_base::sync_with_stdio(false); \
             cin.tie(0)
@@ -18,33 +18,34 @@ using namespace std;
 
 const ll N = 2e5 + 1103;
 const ll M = 2e5 + 1103;
-ll n, k, m, a[N], res[N];
-ll b[N], flag[N];
-
-int search(ll target) {
-    ll l = 1, r = n;
-    while (l <= r) {
-        ll g = (l + r) >> 1;
-        if (a[g] <= target) {
-            l = g + 1;
-        } else r = g - 1;
-    }
-    return l;
-}
-
+ll n, k, m;
+vector <ll> a;
+vector <ll> b;
+multiset <ll> s;
 
 int solve() {
+    s.clear();
     cin >> n >> m;
+    a.resize(n);
+    b.resize(m);
     rep(i, n) cin >> a[i];
     rep(i, m) cin >> b[i];
-    sort(a + 1, a + 1 + n);
-    rep(i, m) {
-        ll pos = search(b[i]);
-
-    }
-    cout << endl;
+    vector <ll> ans(b.size());
     rep(i, n) {
-        cout << a[i] << " ";
+        s.insert(a[i]);
+    }
+    rep(i, m) {
+        multiset <ll> :: iterator it = s.upper_bound(b[i]);
+        if (it == s.begin()) {
+            ans[i] = -1;
+        } else {
+            --it;
+            ans[i] = *it;
+            s.erase(it);
+        }
+    }
+    rep(i, m) {
+        cout << ans[i] << " ";
     }
     return 0;
 }
