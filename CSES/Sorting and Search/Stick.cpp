@@ -16,30 +16,23 @@ using namespace chrono;
 
 #define fastIO ios_base::sync_with_stdio(false); \
                 cin.tie(0);
-#define ii pair< ll, ll >
 
-ii arr[N*10];
+ll arr[N*10];
+map <ll, ll> dp;
 ll n;
-vector <ll> dir[N];
-
-bool cmp(ii a, ii b) {
-    return a.se < b.se;
-}
-
 
 void solve() {
     cin >> n;
-    rep(i, n) cin >> arr[i].fi >> arr[i].se;
-    sort(arr + 1, arr + 1 + n, cmp);
-    ll ans = 0, x = 0;
-    forto(i, 1, n) {
-        if (arr[i].fi >= x) {
+    rep(i, n) cin >> arr[i], dp[arr[i]]++;
+        sort(arr + 1, arr + 1 + n);
+        ll pos = (n & 1) ? (n / 2 + 1) : (n / 2);
 
-            x = arr[i].se;
-                ans++;
-        }
+    ll median = arr[pos];
+    ll ans= 0;
+    rep(i, n) {
+        ans += abs(median - arr[i]);
     }
-    cout << ans << endl;
+    cout << ans;
 }
 
 int main() {
