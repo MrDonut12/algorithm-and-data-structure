@@ -20,14 +20,24 @@ const ll N = 2e5 + 1103;
 const ll M = 1e3 + 1103;
 const ll INF = 1e9 + 7;
 
-ll a[N], b[N];
+ll arr[N];
 void solve() {
-    int n, m;
-    cin >> n >> m;
-    rep(i, n) cin >> a[i];
-    rep(i, m) cin >> b[i];
-    sort(a + 1, a + 1 + n);
-    sort(b + 1, b + 1 + m);
+    int n, x;
+    cin >> n >> x;
+    forto(i, 1, n) cin >> arr[i];
+    sort(arr + 1, arr + 1 + n);
+    ll l = 1, r = n, ans = 0;
+    while (l <= r) {
+        if (arr[l] + arr[r] <= x) {
+            l++;
+            r--;
+            ans++;
+        } else {
+            r--;
+            ans++;
+        }
+    }
+    cout << ans << endl;
 }
 
 signed main() {
