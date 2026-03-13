@@ -18,40 +18,21 @@ using namespace chrono;
 
 const ll N = 2e5 + 1103;
 const ll M = 1e3 + 1103;
-ll n, k, a[N];
+ll n, k, a[N], ans;
 const ll INF = 1e9 + 7;
-
-ll powd(ll a, ll b) {
-    if (b == 0) return 1;
-    if (b == 1) return a % INF;
-    ll ans = powd(a, b / 2) % INF;
-    ans = (ans * ans) % INF;
-    if (b & 1) ans = (ans * a) % INF;
-    return ans;
-}
-
-
-
-
+unordered_map <ll, ll> mp;
 void solve() {
-    cin >> n >> k;
-    ll index = 0;
-    for (i = 1; i <= 100; i++) {
-        for (j = 1; j <= i; j++) {
-            index++;
-            if (index == k) {
-
-                return ;
-            }
-        }
+    cin >> n;
+    forto(i, 1, n) cin >> k, mp[k % 23]++;
+    for (auto &it : mp) {
+        ans += (it.se - 1) * it.se/2;
     }
+    cout << ans;
 }
 signed main() {
     fastIO;
-    freopen("TEST.INP", "r", "stdin");
-    freopen("TEST.OUT", "w", "stdout");
     int tt = 1;
-    cin >> tt;
+    // cin >> tt;
     while (tt--) {
         solve();
     }

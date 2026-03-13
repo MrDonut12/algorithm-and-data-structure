@@ -34,24 +34,13 @@ ll powd(ll a, ll b) {
 
 
 void solve() {
-    cin >> n >> k;
-    ll index = 0;
-    for (i = 1; i <= 100; i++) {
-        for (j = 1; j <= i; j++) {
-            index++;
-            if (index == k) {
-
-                return ;
-            }
-        }
-    }
+    cin >> n;
+    cout << n * 18;
 }
 signed main() {
     fastIO;
-    freopen("TEST.INP", "r", "stdin");
-    freopen("TEST.OUT", "w", "stdout");
     int tt = 1;
-    cin >> tt;
+    // cin >> tt;
     while (tt--) {
         solve();
     }

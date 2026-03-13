@@ -46,7 +46,6 @@ void solve() {
         a = b;
         ans++;
     }
-    cout << a.size();
     cout << ans + (a.size() == 1) << endl;
 }
 
