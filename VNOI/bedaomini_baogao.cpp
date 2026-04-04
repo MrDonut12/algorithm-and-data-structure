@@ -2,6 +2,10 @@
 using namespace std;
 #define ll long long
 
+const ll N = 2e6 + 1103;
+const ll M = 1e3 + 1103;
+
+
 void solve() {
     ll C, p, t1, t2, n1, n2;
     cin >> C >> p >> n1 >> n2 >> t1 >> t2;
