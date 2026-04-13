@@ -19,26 +19,31 @@ public class LRU {
             st = new StringTokenizer(br.readLine(), " ");
             String cmds = st.nextToken();
             if (cmds.equals("put")) {
-                currCapacity++;
+                int key = Integer.parseInt(st.nextToken());
+                int value = Integer.parseInt(st.nextToken());
 
-                if (currCapacity > capacity) {
-                    map.remove(dq.peekLast());
-                    dq.removeLast();
+                if (map.containsKey(key)) {
+                    dq.remove(key); // update → move lên đầu
+                } else {
+                    if (map.size() == capacity) {
+                        int lru = dq.peekLast();
+                        dq.removeLast();
+                        map.remove(lru);
+                    }
                 }
-                int first = Integer.parseInt(st.nextToken());
-                int second = Integer.parseInt(st.nextToken());
-                map.put(first, second);
-                dq.addFirst(first);
+
+                map.put(key, value);
+                dq.addFirst(key);
             } else {
                 // cmds == get
                 int key = Integer.parseInt(st.nextToken());
-                if (map.get(key) == null) {
+                if (!map.containsKey(key)) {
                     System.out.println(-1);
                 } else {
                     System.out.println(map.get(key));
-                    int lastElement = dq.peekLast();
-                    dq.addFirst(lastElement);
-                    dq.removeLast();
+
+                    dq.remove(key);
+                    dq.addFirst(key);
                 }
             }
         }
