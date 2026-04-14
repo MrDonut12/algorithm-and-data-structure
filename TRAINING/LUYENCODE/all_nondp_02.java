@@ -31,7 +31,6 @@ public class all_nondp_02 {
         long K = Long.parseLong(st.nextToken());
         long sum = 0;
 
-        // read Array
         st = new StringTokenizer(br.readLine());
         long[] arr = new long[(int) n];
         for (int i = 0; i < n; i++) {
