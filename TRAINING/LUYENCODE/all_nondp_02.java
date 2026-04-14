@@ -41,7 +41,7 @@ public class all_nondp_02 {
 
         long left = 0,
             right = sum * 5,
-            ans = 0;
+            ans = sum;
         while (left <= right) {
             long curr_sum = left + (right - left) / 2;
             if (check(curr_sum, arr, n, K)) {
