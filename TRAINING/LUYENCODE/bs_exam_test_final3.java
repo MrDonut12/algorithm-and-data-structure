@@ -19,6 +19,26 @@ public class bs_exam_test_final3 {
         }
     }
 
+    private static long countCouple(long secondNum, long target) {
+        long index = 0;
+        for (long i = secondNum; i <= target; i++) {
+            if (!prime_array[(int) i]) {
+                continue;
+            }
+
+            long thirdNum = target - i;
+            if (
+                thirdNum >= 2 &&
+                thirdNum <= target &&
+                prime_array[(int) thirdNum] &&
+                thirdNum >= i
+            ) {
+                index++;
+            }
+        }
+        return index;
+    }
+
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(
             new InputStreamReader(System.in)
@@ -27,17 +47,10 @@ public class bs_exam_test_final3 {
         StringTokenizer st = new StringTokenizer(br.readLine());
         long k = Long.parseLong(st.nextToken());
         long index = 0;
-        for (int i = 2; i <= k; i++) {
-            if (prime_array[i]) {
-                for (int j = i; j <= k; j++) {
-                    if (prime_array[j]) {
-                        for (int l = j; l <= k; l++) {
-                            if (prime_array[l]) {
-                                if (i + j + l == k) index++;
-                            }
-                        }
-                    }
-                }
+        for (long firstNum = 2; firstNum <= k; firstNum++) {
+            if (prime_array[(int) firstNum]) {
+                long target = k - firstNum;
+                index += countCouple(firstNum, target);
             }
         }
         System.out.println(index);
