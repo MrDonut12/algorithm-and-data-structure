@@ -1,0 +1,43 @@
+1. Quy định chấm bài
+- Chỉ chấm bài khi:
+  # Bài biên dịch không lỗi, chạy được
+  # Comment phương thức đầy đủ
+  # Comment giải thuật đầy đủ
+  # Bài bị Exception khi đang thực thi => reject 100%
+  # Bài bị sai chính tả => reject 100%
+- Chấm điểm: mang laptop lên bàn GV chấm trực tiếp.
+  # Mỗi người chỉ được chấm 1 lần/buổi, mỗi lần nộp được nộp nhiều bài.
+- 2 slot cuối của môn, Giáo viên chỉ chấm bài chứ không nhận thêm bài.
+- Phải đúng phong cách lập trình hướng đối tượng mới chấm. Nếu lập trình cấu trúc hoặc lập trình hàm sẽ phải làm lại.
+	Các lỗi cơ bản khi mắc phải sẽ bị trả lại bài và không chấm điểm, ví dụ:
+	Khai báo toàn bộ hàm là static (trừ các hàm thư viện thực hiện chức năng validation)
+	Khai báo toàn bộ field là public
+	Khai toàn bộ biến như C, (khai vào hết các biết, mảng vào hàm main) chứ không tách thành đối tượng 
+	Khai báo mảng trong main, truyền mảng vào phương thức => lập trình hàm chứ không phải hướng đối tượng
+
+2. Quy định đổi điểm:
+- Điểm Short không thể quy đổi thành điểm Long
+- Điểm Long không thể quy đổi thành điểm Short
+- Điểm bài V có thể chọn một trong hai cột là Short hoặc Long tùy theo sinh viên lựa chọn (có thể thay đổi lựa chọn trong quá trình học)
+
+3. Quy định đặc cách nghỉ học và điểm danh có.
+- Sinh viên đậu môn khi làm đủ 10 điểm Short và 5 điểm Long.
+- Sinh viên được nghỉ ở nhà và GV điểm danh có mặt khi làm đủ 15 điểm Short và 5 điểm Long.
+
+4. Quy định về đề bài
+- Khi thực hiện bài, sinh viên sẽ đạt 70% yêu cầu đề, giáo viên có yêu cầu thay đổi đề 30% đối với các bài nghi giống nhau hoặc để kiểm tra mức độ hiểu bài của sinh viên  (validate, output format) => nếu sửa được theo yêu cầu giảng viên thì accept
+
+5. Quy định RỚT MÔN
+- Cứ học qua mỗi 7 slot thì phải được accept >= 5 điểm Short. 
+- Cứ học qua mỗi 13 slot thì phải được accept >= 10 điểm Short.
+- Sinh viên học 7 slot nhưng chưa được accept >= 5 điểm Short thì bị nhắc nhở lần 1 
+- Sinh viên học xong 13 slot nhưng chưa được accept >= 10 điểm Short thì RỚT MÔN 
+  (dù chưa bị nhắc nhở lần 1 vẫn rớt môn nếu kết thúc slot 13 mà vẫn chưa đạt đủ 10 điểm short).
+
+6. Quy định trừ điểm
+- Nếu code không format thì -1 điểm của bài đang làm (tính năng format code trong Netbeans: Alt + Shift + F), trừ thẳng trên bảng điểm. 
+Cho phép SV làm lại bài đã bị trừ, nếu hiện tại điểm sau khi trừ là -1, SV làm lại bài đó đúng thì điểm sẽ là 0.
+- Nếu sinh viên NÓI TỤC / CHỬI THỂ trong tiết học, -1 điểm long.
+- Nếu sinh viên chơi game/xem phim/đọc báo trong giờ học -1 điểm short.
+- Ai đạt 15 điểm Short + 5 điểm long phải ở nhà, vào lớp => cho absent
+- Ai đạt được 10 điểm Short + 5 điểm long phải giải tiếp bài để được ở nhà => không nộp bài tiếp thì bị trừ bớt điểm
