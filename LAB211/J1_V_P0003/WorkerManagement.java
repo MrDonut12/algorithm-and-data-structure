@@ -1,5 +1,5 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class WorkerManagement {
 
@@ -50,7 +50,16 @@ public class WorkerManagement {
     }
 
     public void displayWorkers() {
-        salaryHistories.sort(new Comparator<salaryHistory>() {});
+        salaryHistories.sort((firstObject, secondObject) -> {
+            if (firstObject.getId().equals(secondObject.getId())) {
+                LocalDate date1 = LocalDate.parse(firstObject.getDate());
+                LocalDate date2 = LocalDate.parse(secondObject.getDate());
+
+                return date1.compareTo(date2);
+            }
+
+            return firstObject.getId().compareTo(secondObject.getId());
+        });
 
         System.out.printf(
             "%-10s %-15s %-10s %-10s %-10s %-15s\n",
