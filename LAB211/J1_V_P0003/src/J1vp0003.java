@@ -23,8 +23,8 @@ public class J1vp0003 {
     }
 
     /**
-     * Main entry point.
-     * @param args CLI arguments.
+     * Main entry program
+     * @param args CLI arguments
      */
     public static void main(String[] args) {
         J1vp0003 mainProgram = new J1vp0003();

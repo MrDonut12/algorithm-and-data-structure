@@ -1,5 +1,11 @@
 package src;
 
+import src.controller.CalculatorController;
+
+/**
+ * J1.S.P0009 - Calculator Program support calculate BMI value and normal operation
+ * @author KhanhNDCE200196
+ */
 public class J1sp0009 {
 
     /**
@@ -7,14 +13,12 @@ public class J1sp0009 {
      */
     public J1sp0009() {}
 
+    /**
+     * Entry point of program
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
-        InputValidator inputValidator = new InputValidator();
-    }
-
-    public void displayMenu() {
-        System.out.println("========= Calculator Program =========");
-        System.out.println("1. Normal Calculator");
-        System.out.println("2. BMI Calculator");
-        System.out.println("3. Exit");
+        CalculatorController calculatorController = new CalculatorController();
+        calculatorController.runProgram();
     }
 }
