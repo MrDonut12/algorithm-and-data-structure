@@ -6,27 +6,27 @@ package src.model;
  */
 public enum BMIStatus {
     /**
-     * BMI is below standard level.
+     * BMI is below standard level
      */
     UNDER_STANDARD("Under-standard"),
 
     /**
-     * BMI is within healthy range.
+     * BMI is within healthy range
      */
     STANDARD("Standard"),
 
     /**
-     * BMI is above healthy range.
+     * BMI is above healthy range
      */
     OVERWEIGHT("Overweight"),
 
     /**
-     * BMI indicates obesity.
+     * BMI indicates obesity
      */
     FAT("Fat - should lose weight"),
 
     /**
-     * BMI indicates severe obesity.
+     * BMI indicates severe obesity
      */
     VERY_FAT("Very fat - should lose weight immediately");
 

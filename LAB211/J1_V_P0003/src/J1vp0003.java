@@ -14,7 +14,7 @@ public class J1vp0003 {
     private final WorkerManagement manager;
 
     /**
-     * Constructor to initialize dependencies.
+     * Constructor
      */
     public J1vp0003() {
         this.sc = new Scanner(System.in);
@@ -61,6 +61,9 @@ public class J1vp0003 {
                 case 5:
                     System.out.println("Exiting...");
                     return;
+                default:
+                    System.out.println("Invalid Option");
+                    break;
             }
         }
     }

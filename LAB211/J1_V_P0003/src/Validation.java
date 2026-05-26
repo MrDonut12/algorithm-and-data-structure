@@ -5,14 +5,10 @@ import java.util.Scanner;
 
 /**
  * Utility class for validating user input
- * Refactored to use instance methods where possible to reduce static dependency
  * @author KhanhNDCE200196
  */
 public class Validation {
 
-    /**
-     * Scanner object for reading input
-     */
     private final Scanner sc;
 
     /**

@@ -59,6 +59,32 @@ public class CalculatorController {
     }
 
     /**
+     * Helper method to get a valid double from user input with optional positivity check
+     * @param msg the input message that we want to display
+     * @param isPositive true if value must be > 0
+     * @return valid double value
+     */
+    private double getDoubleInput(String msg, boolean isPositive) {
+        while (true) {
+            System.out.print(msg);
+            String input = scanner.nextLine();
+            Double value = inputValidator.checkInputNumber(input);
+
+            if (value == null) {
+                System.out.println("Input must be a valid number");
+                continue;
+            }
+
+            if (isPositive && value <= 0) {
+                System.out.println("Value must be greater than 0.");
+                continue;
+            }
+
+            return value;
+        }
+    }
+
+    /**
      * Get menu choice
      * @return valid menu option
      */
@@ -87,45 +113,6 @@ public class CalculatorController {
     }
 
     /**
-     * Input valid number
-     * @param message input message that we want to display
-     * @return valid double number
-     */
-    private double inputNumber(String msg) {
-        while (true) {
-            System.out.print(msg);
-
-            String input = scanner.nextLine();
-
-            Double value = inputValidator.checkInputNumber(input);
-
-            if (value == null) {
-                System.out.println("Input must be a valid number");
-                continue;
-            }
-
-            return value;
-        }
-    }
-
-    /**
-     * Input positive number
-     * @param message input message that we want to display
-     * @return positive double number (>= 0)
-     */
-    private double inputPositiveNumber(String msg) {
-        while (true) {
-            double value = inputNumber(msg);
-
-            if (value <= 0) {
-                System.out.println("Value must be greater than 0.");
-                continue;
-            }
-            return value;
-        }
-    }
-
-    /**
      * Input valid operator
      * @return Operator enum
      */
@@ -147,10 +134,10 @@ public class CalculatorController {
 
     /**
      * Input valid BMI number
-     * @param message input prompt
+     * @param message the input message that we want to display
      * @return valid positive number
      */
-    private double inputBMINumber(String msg) {
+    private double getBMINumber(String msg) {
         while (true) {
             System.out.print(msg);
 
@@ -175,8 +162,8 @@ public class CalculatorController {
     public void useBMICalculator() {
         System.out.println("----- BMI Calculator -----");
 
-        double weight = inputBMINumber("Enter Weight(kg): ");
-        double height = inputBMINumber("Enter Height(cm): ");
+        double weight = getBMINumber("Enter Weight(kg): ");
+        double height = getBMINumber("Enter Height(cm): ");
 
         try {
             double bmi = bmiCalculator.calculateBMIValue(weight, height);
@@ -197,7 +184,7 @@ public class CalculatorController {
     public void useNormalCalculator() {
         System.out.println("----- Normal Calculator -----");
 
-        double memory = inputNumber("Enter number: ");
+        double memory = getDoubleInput("Enter number: ", false);
 
         while (true) {
             Operator operator = inputOperator();
@@ -208,7 +195,7 @@ public class CalculatorController {
                 return;
             }
 
-            double nextNumber = inputNumber("Enter number: ");
+            double nextNumber = getDoubleInput("Enter number: ", false);
 
             try {
                 memory = normalCalculator.calculate(

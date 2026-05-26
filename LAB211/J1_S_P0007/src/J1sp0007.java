@@ -1,9 +1,10 @@
 package src;
 
 /**
- * This class use linear search to find the list of index of the target if it is occur in Array with random integer number
+ * Linear Search Program (Main workflow)
  * @author KhanhNDCE200196
  */
+
 public class J1sp0007 {
 
     /**
@@ -12,12 +13,27 @@ public class J1sp0007 {
     public J1sp0007() {}
 
     /**
-     * Main method of the program.
-     * Creates a LinearSearch object and starts the program.
-     * @param args command-line arguments
+     * Run the linear search program
      */
     public static void main(String[] args) {
-        LinearSearch linearSearch = new LinearSearch();
-        linearSearch.runProgram();
+        InputValidator inputValidator = new InputValidator();
+        // input size of the array
+        int size = inputValidator.getInteger(
+            "Enter number of array: ",
+            0,
+            Integer.MAX_VALUE
+        );
+        MyArray myArray = new MyArray(size);
+        // search the target if it is occur in array
+        int target = inputValidator.getInteger(
+            "Enter search value: ",
+            0,
+            Integer.MAX_VALUE
+        );
+        // print the random element of the array with entered size
+        System.out.println("The array: " + myArray.toString());
+        // print the list of the index of target number that is occur in the array (return by null if cannot find the target in array)
+        System.out.print("Found " + target + " at index: ");
+        System.out.print(myArray.search(target) + "\n");
     }
 }

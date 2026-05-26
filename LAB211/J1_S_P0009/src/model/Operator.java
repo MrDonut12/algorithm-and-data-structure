@@ -6,40 +6,39 @@ package src.model;
  */
 public enum Operator {
     /**
-     * Addition operator.
+     * Addition operator
      */
     ADD("+"),
 
     /**
-     * Subtraction operator.
+     * Subtraction operator
      */
     SUBTRACT("-"),
 
     /**
-     * Multiplication operator.
+     * Multiplication operator
      */
     MULTIPLY("*"),
 
     /**
-     * Division operator.
+     * Division operator
      */
     DIVIDE("/"),
 
     /**
-     * Exponent operator.
+     * Exponent operator
      */
     POWER("^"),
 
     /**
-     * Equal operator.
+     * Equal operator
      */
     EQUAL("=");
 
     private final String symbol;
 
     /**
-     * Initialize operator symbol.
-     *
+     * Initialize operator symbol
      * @param symbol operator character
      */
     Operator(String symbol) {
@@ -47,8 +46,7 @@ public enum Operator {
     }
 
     /**
-     * Get operator symbol.
-     *
+     * Get operator symbol
      * @return operator symbol
      */
     public String getSymbol() {
