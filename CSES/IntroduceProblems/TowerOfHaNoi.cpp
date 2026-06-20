@@ -1,20 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define ll long long
-const ll N = 2e5 + 276;
+void hanoi(int n, char src, char temp, char dest) {
 
-vector < pair <ll, ll > > q;
-void tr(int n, int A, int B, int C) {
-	if (n == 0) return ;
-	tr(n - 1, A, C, B);
-	cout << A << " " << B << "\n";
-	tr(n - 1, C, B, A);
+    if (n == 1) {
+        cout << src << " " << dest << "\n";
+        return;
+    }
+
+    hanoi(n - 1, src, dest ,temp);
+    cout << src << " " << dest << "\n";
+    hanoi(n - 1, temp, src, dest);
 }
-int main(){
-	int n;
-	cin >> n;
-	cout << (1 << n) - 1 << "\n";
-	tr(n, 1, 3, 2);
 
+int main() {
+    int n;
+    cin >> n;
+    cout << (1 << n) - 1 << "\n";
+    hanoi(n, '1', '2', '3');
 }
