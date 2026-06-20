@@ -15,7 +15,6 @@ public class InputValidator {
 
     /**
      * Validate and parse double number
-     *
      * @param inputValue user input
      * @return Double value if valid, null if not
      */
@@ -23,7 +22,6 @@ public class InputValidator {
         if (inputValue == null) {
             return null;
         }
-
         inputValue = inputValue.trim();
 
         // check if inputValue is empty after trim

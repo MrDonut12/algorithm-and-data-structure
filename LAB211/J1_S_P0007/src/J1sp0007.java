@@ -14,6 +14,7 @@ public class J1sp0007 {
 
     /**
      * Run the linear search program
+     * @param args Command line arguments (not use)
      */
     public static void main(String[] args) {
         InputValidator inputValidator = new InputValidator();
