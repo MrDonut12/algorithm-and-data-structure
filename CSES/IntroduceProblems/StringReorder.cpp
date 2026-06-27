@@ -1,64 +1,48 @@
 #include <bits/stdc++.h>
 using namespace std;
-using ll = long long;
-using ld = long double;
 
-#define ii pair<ll, ll>
-#define forto(i, a, b) for(ll i = a; i <= b;i ++)
-#define fordto(i, a, b) for(ll i = a; i >= b;i --)
-#define rep(i, n) for (ll i = 0; i < n; i++)
-#define fi first
-#define se second
-#define pb push_back
-#define endl "\n"
-#define fastIO ios_base::sync_with_stdio(false); cin.tie(0)
-
+#define ll long long
 const ll N = 2e5 + 256;
-const ll M = 2e5 + 256;
-const ll P = 1e9 + 7;
 
-void solve() {
-    string s; cin >> s;
-    map <char, ll> mp;
-    vector < pair<char, ll> > v;
-    rep(i, s.size()) mp[s[i]]++;
-    for (auto &it : mp) v.pb(it);
+int d[26];
 
-    ll i = 0, j = 1, k = 0;
-    bool printA = true;
-    while (k <= 50) {
-        k++;
-        if (v[i].se != 0 && v[j].se != 0) {
-            if (printA) {
-                printA = false;
-                cout << v[i].fi;
-                v[i].se--;
-            } else {
-                printA = true;
-                cout << v[j].fi;
-                v[j].se--;
+int main() {
+    string s;
+    cin >> s;
+    int n = s.size(), mx = 0;
+    for (int i = 0; i < n; i++) {
+        d[s[i] - 'A']++;
+        mx = max(mx, d[s[i] - 'A']);
+    }
+
+    if (mx > (n + 1)/2) {
+        cout << -1;
+        return 0;
+    }
+
+    string ans;
+    for (int i = 0; i < n; i++) {
+
+        for (int c = 0; c < 26; c++) {
+            mx = 0;
+            if (d[c] <= 0) continue;
+            if (!ans.empty() && ans.back() == char(c + 'A')) continue;
+
+            d[c]--;
+
+            for (int c = 0; c < 26; c++) {
+                mx = max(mx, d[c]);
             }
-        }
 
-        if (v[i].se == 0) {
-            i = j;
-            j++;
-        }
+            int remain = n - i - 1;
 
-        if (v[j].se == 0) {
-            j++;
+            if (mx <= (remain + 1)/2) {
+                ans += (c + 'A');
+                break;
+            }
+
+            d[c]++;
         }
     }
-
-}
-
-signed main() {
-    fastIO;
-    freopen("TEST.INP", "r" , stdin);
-    freopen("TEST.OUT", "w" , stdout);
-    int tt = 1;
-    //cin >> tt;
-    while(tt--) {
-        solve();
-    }
+    cout << ans << endl;
 }
