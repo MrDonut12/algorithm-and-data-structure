@@ -2,37 +2,36 @@
 using namespace std;
 
 #define ll long long
-const ll N = 2e5 + 276;
-ll ch[N];
-ll n;
+#define endl "\n"
+
+const ll N = 2e5 + 256;
+
+
+map <string, bool> mp;
+bool check[N];
 string s;
-map < string, ll > mp;
-void backtrack(int idx) {
-    if (idx == n) {
-    	string ans = "";
-        for (int i = 0; i < n; i++) ans += s[ch[i]];
-        mp[ans] = 1;
-        return;
+
+void backtrack(string tmp, int step) {
+    if (step == s.size()) {
+        mp[tmp] = 1;
+        return ;
     }
 
-    for (int i = idx; i < n; i++) {
-        swap(ch[i], ch[idx]);
-        backtrack(idx + 1);
-        swap(ch[i], ch[idx]);
+    for (int i = 0; i < s.size(); i++) {
+        if (!check[i]) {
+            check[i] = true;
+            backtrack(tmp + s[i], step + 1);
+            check[i] = false;
+        }
     }
+
 }
 
 int main() {
     cin >> s;
-    n = s.size();
-
-    for (int i = 0; i < n; i++) ch[i] = i;
-
-    backtrack(0);
-    cout << mp.size() << "\n";
-    for (auto it: mp) {
-    	cout << it.first << "\n";
-	}
-    return 0;
+    backtrack("", 0);
+    cout << mp.size() << endl;
+    for (auto it : mp) {
+        cout << it.first << endl;
+    }
 }
-

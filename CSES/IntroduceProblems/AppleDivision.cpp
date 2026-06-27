@@ -4,20 +4,28 @@ using namespace std;
 #define ll long long
 const ll N = 2e5 + 276;
 
-ll a[N], n, ans = LLONG_MAX;
-int main(){
-    freopen("TEST.INP", "r", stdin);
-    freopen("TEST.OUT", "w", stdout);
-	cin >> n;
-	for (int i = 0; i < n; i++) cin >> a[i];
-	for (int i = 0; i < (1 << n); i++) {
-		ll popon = 0, popoff = 0;
-		for (int j = 0; j < n; j++) {
-			if (((i >> j) & 1) == 1) popon += a[j];
-			else popoff += a[j];
+ll a[N], n, ans = LLONG_MAX, sum = 0;
+bool check[N];
+void solve(int step, long long temp) {
+    if (step == n) {
+        ans = min(ans, abs(temp - (sum - temp)));
+        return ;
+    }
+    solve(step + 1, temp + a[step]);
+    solve(step + 1, temp);
 
-		}
-		ans = min(ans, abs(popon - popoff));
-	}
-	cout << ans;
+
+}
+
+int main(){
+    cin >> n;
+    for (int i = 0 ; i < n ; i++) {
+        cin >> a[i];
+        sum += a[i];
+    }
+
+    solve(0, 0);
+
+    cout << ans << endl;
+
 }
