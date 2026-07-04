@@ -3,47 +3,40 @@ using namespace std;
 
 #define ll long long
 #define ld long double
-#define ii pair <ll, ll>
-#define ci pair <char, ll>
-#define endl "\n"
-#define deb cout<<"debug\n"
-#define fi first
-#define se second
-#define pb push_back
-#define forto(i, a, b) for(int i = a; i <= b; i++)
-#define fordto(i, a, b) for(int i = a; i >= b; i--)
-#define rep(i, n) for(int i = 1; i <= n; i++)
-#define fastIO ios_base::sync_with_stdio(false); cin.tie(0);
 
-using namespace chrono;
-const ll N = 2e5 + 1103;
+const ll N = 2e5 + 276;
 const ll M = 1e3 + 1103;
-const ll INF = 1e9 + 7;
 
-ll arr[N];
+int a[N];
+
 void solve() {
     int n, x;
     cin >> n >> x;
-    forto(i, 1, n) cin >> arr[i];
-    sort(arr + 1, arr + 1 + n);
-    ll l = 1, r = n, ans = 0;
+    for (int i = 0 ; i < n; i++) cin >> a[i]; sort(a, a + n);
+    ll l = 0, r = n - 1;
+    ll ans = 0;
+
     while (l <= r) {
-        if (arr[l] + arr[r] <= x) {
-            l++;
-            r--;
+        if (l == r) {
             ans++;
-        } else {
+            break;
+        }
+        else if (a[l] + a[r] <= x) {
+            l++; r--;
+            ans++;
+        }
+        else if (a[l] + a[r] > x) {
             r--;
             ans++;
         }
     }
-    cout << ans << endl;
+    cout << ans << "\n";
 }
 
-signed main() {
-    int tt = 1;
-    // cin >> tt;
-    while (tt--) {
+int main() {
+    int t = 1;
+    // cin >> t;
+    while(t--) {
         solve();
     }
 }

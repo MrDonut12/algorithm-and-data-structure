@@ -9,28 +9,25 @@ const ll M = 1e3 + 1103;
 #define fi first
 #define se second
 #define ii pair<ll, ll>
+bool comp(ii a, ii b) {
+    if (a.fi == b.fi) return a.se < b.se;
+    return a.fi < b.fi;
+}
 ii a[N];
 map <ll, ll> mp;
-
-bool cmp(ii a, ii b) {
-    return a.se < b.se;
-}
-
 void solve() {
     ll n, x, y;
     cin >> n;
     for (int i = 1; i <= n; i++) {
-        cin >> a[i].fi >> a[i].se;
+        cin >> x >> y;
+        mp[x]++; mp[y]--;
     }
-    ll index = 0, ans = 0;
-    sort(a + 1, a + 1 + n, cmp);
-    for (int i = 1; i <= n; i++) {
-        if (a[i].fi >= index) {
-            ans++;
-            index = a[i].se;
-        }
+    int index = 0, ans = 0;
+    for (auto it : mp) {
+        index += it.se;
+        ans = max(ans, index);
     }
-    cout << ans << endl;
+    cout << ans;
 }
 
 signed main() {
