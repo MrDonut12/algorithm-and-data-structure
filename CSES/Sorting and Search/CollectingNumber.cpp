@@ -4,12 +4,9 @@ using namespace std;
 #define ll long long
 #define ld long double
 #define ii pair <ll, ll>
-#define ci pair <char, ll>
-#define endl "\n"
-#define deb cout<<"debug\n"
 #define fi first
 #define se second
-#define pb push_back
+#define pb insert
 #define forto(i, a, b) for(int i = a; i <= b; i++)
 #define fordto(i, a, b) for(int i = a; i >= b; i--)
 #define rep(i, n) for(int i = 1; i <= n; i++)
@@ -19,34 +16,48 @@ using namespace std;
 using namespace chrono;
 const ll N = 2e5 + 1103;
 const ll M = 1e3 + 1103;
-const ll INF = 1e9 + 7;
 
-stack <ll> st;
-vector <ll> a;
-
+ll a[N], dp[N];
 void solve() {
-    ll n, ans   =0;
-    cin >> n;
+    int n, m;
+    cin >> n>> m;
+    forto(i, 1 ,n) cin >> a[i], dp[a[i]] = i;
+    int ans = 1;
+    forto(i, 2, n) {
+        if (dp[i] < dp[i - 1]) ans++;
+    }
 
-    vector<ll> a(n);
-    forto(i, 0, n-1) cin >> a[i];
+    forto(i, 1, m) {
+        int x, y;
+        cin >> x >> y;
+        int u = a[x];
+        int v = a[y];
 
-    while (a.size() > 1) {
-        stack<ll> st;
-        vector<ll> b;
+        set<int> vv;
+        vv.pb(u);
+        vv.pb(u + 1);
+        vv.pb(v);
+        vv.pb(v + 1);
 
-        forto(i, 0, a.size() - 1) {
-            if (st.empty() || a[i] > st.top()) {
-                st.push(a[i]);
-            } else {
-                b.pb(a[i]);
+        for (int it : vv) {
+            if (it >= 2 && it <= n) {
+                if (dp[it] < dp[it - 1])
+                    ans--;
+            }
+        }
+        swap(dp[u], dp[v]);
+        swap(a[x], a[y]);
+
+
+        for (int it : vv) {
+            if (it >= 2 && it <= n) {
+                if (dp[it] < dp[it - 1])
+                    ans++;
             }
         }
 
-        a = b;
-        ans++;
+        cout << ans << '\n';
     }
-    cout << ans + (a.size() == 1) << endl;
 }
 
 
