@@ -3,36 +3,44 @@ using namespace std;
 
 #define ll long long
 #define ld long double
-#define ii pair <ll, ll>
 #define fi first
 #define se second
-#define pb insert
-#define forto(i, a, b) for(int i = a; i <= b; i++)
-#define fordto(i, a, b) for(int i = a; i >= b; i--)
-#define rep(i, n) for(int i = 1; i <= n; i++)
-#define fastIO ios_base::sync_with_stdio(false);\
-                    cin.tie(0);
+#define ii pair<ll, ll>
+#define pb push_back
+#define endl "\n"
 
-using namespace chrono;
 const ll N = 2e5 + 1103;
-const ll M = 1e3 + 1103;
+const ll M = 1103;
+vector<ii> a;
+ll n, ans = 1;
 
-ll a[N], dp[N];
-void solve() {
-    int n, m;
-    cin >> n>> m;
-    rep(i, n) {
-        int x; cin >> x;
-        dp[x] = i;
-    }
+
+bool cmp(ii a, ii b) {
+    if (a.fi == b.fi) return a.se > b.se;
+    return a.fi > b.fi;
 }
 
+void solve() {
+    cin >> n;
+    multiset <ll> tower;
+    for (int i = 1; i <= n; i++) {
+        ll x;
+        cin >> x;
+        multiset <ll>::iterator it = tower.upper_bound(x);
+        if (it == tower.end()) {
+            tower.insert(x);
+        } else {
+            tower.erase(it);
+            tower.insert(x);
+        }
+    }
+    cout << tower.size() << endl;
+}
 
-signed main() {
-    fastIO;
-    int tt = 1;
-    // cin >> tt;
-    while (tt--) {
+int main() {
+    int t = 1;
+    // cin >> t;
+    while (t--) {
         solve();
     }
 }
