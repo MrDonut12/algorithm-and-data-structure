@@ -47,7 +47,19 @@ CSES Problem: Collecting Numbers II
 // Giữ core idea của bài trước, ở đây ta chỉ quan tâm chỉ số thay đổi sau đó ảnh hưởng như thế nào thoi, cụ thể là các chỉ số x, x + 1 và y, y+1, sử dụng set để loại bỏ trùng vì trước đó lỡ dùng vector và nó bị sai, tại dùng vòng lặp for để xét điều kiện cho nhanh
 // Bài này setup đơn giản nhưng để tiếp cận và suy ra core idea thì cả một quá trình
 
+###### 06/07/2026
 CSES Problem: Playlists
 // Bài này sử dụng tư duy sliding window thông qua hai chỉ số i và j, mình sẽ vừa expand chỉ số i cho tới khi gặp trị số trùng thông qua mảng đánh dấu flag, nếu trùng thì sẽ thu ngược chỉ số j lại cho đến khi hết trùng thì thoi
 // Bài này mình đã phạm lỗi về cách thu hẹp j, nếu gặp trùng thì mình chỉ đơn giản là j + 1 trong khi rủi ro là việc a[i] đã xuất hiện trước đó nó có thể nằm ở giữa cửa sổ, điều này đã phải khiến mình thay đổi tùy chỉnh thành vòng lặp while
 // btw sau đó tiếp tục vướng cách đánh dấu nhưng đã fix được, và code này AC, khổ nỗi mình vướng lại lỗi cũ là trong CSES có test anti-hash, nên mình dùng unordered_map đã khiến cho code này bị TLE, chuyển sang map thì AC
+
+###### 07/07/2026
+CSES Problem: Tower
+// Bài này idea gần như giống Collecting Idea nhưng bịp ở chỗ là các số có khả năng trùng và độ lớn là 1e9, vì thế cách cũ không khả thi, mình đã có sử dụng vector, sort và implement lại theo cách tương tự, nhưng không giải quyết triệt để được số trùng, có nghĩ theo hướng stack nhưng vẫn chưa tối ưu, bài này mình đã đọc hint, ở đây ta dùng multiset, bằng việc ưu tiên đây số hiện tại vào một số lớn hơn gần nhất, sau đó set lại, ý nghĩa là tạo đk cho các số nhỏ hơn có đk được lắp vào các tower có sẵn, tối ưu hơn dùng stack, nếu không tìm được số nào như vậy thì insert như một tower mới
+// Ví dụ 3 8 2 1 5, ta có số 3, sau đó duyệt tới số 8 thì không có số nào lớn hơn 8 cả nên insert, tới số 2, lúc này ta tư duy rằng ta có thể add số 2 vào số 8 nhưng nếu làm vậy thì số 5 sẽ không có cơ hôi được add trong khi tower duy nhất có thể add được là 8, nên ta phải đẩy số 2 lại qua số 3 thông qua upper bound, sau đó set lại, tương tự như vậy tới số 5 nó sẽ add được vào số 8, state cuối cùng là 1 và 5, và đây cũng là 2 tower duy nhất song với đó là đáp án
+
+CSES Problem: Traffic Lights
+// Bài này hướng tiếp cận khá mới, nhưng về bản chất ta cần một dữ liệu động để lưu các node luôn tăng dần, ta dùng multiset. Idea ở đây đơn giản là khi một cái đèn mới được add vào, nó luôn chia ở giữa hai node thành hai đoạn mới, nên ta chỉ cần xóa distance cũ và thêm 2 distance mới là xong, multiset luôn đảm bảo dãy tăng dần, mỗi lần xử lí ta in [*(--distance.end())] là ok
+
+
+// Bài học rút ra từ cả hai bài: Trong một số bài khi cần insert, erase song song và đòi hỏi duy trì rằng dữ liệu phải tăng hay giảm dần, ta có thể cân nhắc giúp multiset
