@@ -7,41 +7,45 @@ const ll N = 2e5 + 276;
 ll n, a[N];
 map<ll, ll> cnt;
 
-ll f(ll x) {
-    return (x * (x - 1)) >> 1;
-}
-
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
     cin >> n;
     for (int i = 0; i < n; i++) cin >> a[i];
+
     string answer = "";
     ll l = 0, r = n - 1, curr = 0;
     while (l <= r) {
         bool modifier = false;
         if (l == r) {
             if (a[l] > curr) answer += "L";
-
-
             break;
         }
 
         if (a[l] == a[r] && a[l] > curr) {
+
             curr = a[l];
-            // cout << a[r - 1] - a[r] << " " << a[l + 1] - a[l] << endl;
-
-
-            if (a[r - 1] - a[r] < a[l + 1] - a[l]) {
-                r--;
-                answer += "R";
-                modifier = true;
-            } else {
-                l++;
-                answer += "L";
-                modifier = true;
+            char key;
+            int nleft = 1, nright = 1;
+            ll currin = a[l];
+            for (int i = l + 1; i < r; i++) {
+                if (a[i] > currin) {
+                    nleft++;
+                    currin = a[i];
+                } else break;
             }
+            currin = a[r];
+            for (int i = r - 1; i > l; i--) {
+                if (a[i] > currin) {
+                    nright++;
+                    currin = a[i];
+                } else break;
+            }
+
+            if (nleft >= nright) key = 'L'; else key = 'R';
+            for (int i = 1; i <= max(nright, nleft); i++) answer += key;
+            break;
         }
 
         if (a[l] < a[r]) {
