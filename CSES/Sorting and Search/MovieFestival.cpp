@@ -10,25 +10,32 @@ const ll M = 1e3 + 1103;
 #define se second
 #define ii pair<ll, ll>
 ii a[N];
-map <ll, ll> mp;
 
-bool cmp(ii a, ii b) {
+bool cmp (ii a, ii b) {
     return a.se < b.se;
 }
 
 void solve() {
-    ll n, x, y;
-    cin >> n;
+    ll n, k;
+    cin >> n >> k;
     for (int i = 1; i <= n; i++) {
         cin >> a[i].fi >> a[i].se;
     }
     ll index = 0, ans = 0;
     sort(a + 1, a + 1 + n, cmp);
+
+    multiset <ll> endpoints;
+    for (int i = 1; i <= k; i++) endpoints.insert(0);
     for (int i = 1; i <= n; i++) {
-        if (a[i].fi >= index) {
-            ans++;
-            index = a[i].se;
+        multiset <ll> :: iterator it = endpoints.upper_bound(a[i].fi);
+
+        if (it == endpoints.begin()) {
+            continue;
         }
+        --it;
+        endpoints.erase(it);
+        ++ans;
+        endpoints.insert(a[i].se);
     }
     cout << ans << endl;
 }
