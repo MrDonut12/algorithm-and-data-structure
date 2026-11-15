@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #include <climits>
-#include <sched.h>
 using namespace std;
 
 #define ll long long
