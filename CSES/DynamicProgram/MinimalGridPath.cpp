@@ -1,52 +1,32 @@
+// Source - https://stackoverflow.com/q/79753925
+// Posted by crxyz
+// Retrieved 2026-11-19, License - CC BY-SA 4.0
+
 #include <bits/stdc++.h>
 using namespace std;
-
-#define ll long long
-const ll N = 3303;
-char a[N][N];
-string dp[N][N];
-void solve() {
-  ll n, s = 0;
-  cin >> n;
-
-  for (int i = 1; i <= n; i++) {
-    string x;
-    cin >> x;
-    for (int j = 1; j <= n; j++) {
-      a[i][j] = x[j - 1];
-    }
-  }
-
-  for (int i = 1; i <= n; i++) {
-    for (int j = 1; j <= n; j++) {
-        if (i == 1) {
-            dp[i][j] = dp[i][j - 1] + a[i][j];
-            continue;
-        }
-        if (j == 1) {
-            dp[i][j] = dp[i - 1][j] + a[i][j];
-            continue;
-        }
-        dp[i][j] = min(dp[i - 1][j] + a[i][j], dp[i][j - 1] + a[i][j]);
-    }
-  }
-  cout << dp[n][n] << "\n";
-
-  // for (int i = 1; i <= n; i++) {
-  //   for (int j = 1; j <= n; j++) {
-  //     cout << dp[i][j] << " ";
-  //   }
-  //   cout << endl;
-  // }
-}
 int main() {
   ios::sync_with_stdio(false);
-  cin.tie(nullptr);
+  cin.tie(NULL);
 
-  int t = 1;
+  int n;
+  cin >>n;
 
-  while (t--)
-    solve();
+  vector<string> prev;
+  string s;
+  cin >> s;
+  prev.push_back(s.substr(0, 1));
+  for (int j=1; j<n; j++) { // first row
+    prev.push_back(prev.back()+s[j]);
+  }
 
-  return 0;
+  for (int i=1; i<n; i++) {
+    string s;
+    cin >> s;
+    prev[0] += s[0];
+    for (int j=1; j<n; j++) {
+      prev[j] = min(prev[j-1], prev[j]) + s[j];
+    }
+  }
+
+  cout << prev.back() << '\n';
 }
